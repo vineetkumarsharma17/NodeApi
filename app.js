@@ -1,12 +1,11 @@
 require('dotenv').config(); 
 const express=require('express');
 const app=express();
-app.get('/',(req,res)=>{
-    res.json({
-        status:"1",
-        message:"Success"
-    })
-})
+
+const userRouter=require('./api/user/user.router');
+//converts json to javascript objects
+app.use(express.json());
+app.use("/api/user",userRouter);
 
 
 app.listen(process.env.APP_PORT,()=>{
